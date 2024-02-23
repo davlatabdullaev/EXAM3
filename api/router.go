@@ -75,7 +75,7 @@ func afterRequest(c *gin.Context) {
 		startTime = time.Now()
 	}
 
-	duration := time.Since(startTime.(time.Time)).Seconds()
+	duration := time.Since(startTime.(time.Time)).Nanoseconds()
 
 	log.Println("end time:", time.Now().Format("2006-01-02 15:04:05.0000"), "duration:", duration, "method:", c.Request.Method)
 	fmt.Println()
