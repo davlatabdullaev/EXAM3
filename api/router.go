@@ -70,6 +70,7 @@ func beforeRequest(c *gin.Context) {
 }
 
 func afterRequest(c *gin.Context) {
+	
 	startTime, exists := c.Get("start_time")
 	if !exists {
 		startTime = time.Now()
