@@ -25,7 +25,7 @@ func New(services service.IServiceManager, log logger.ILogger) *gin.Engine {
 	//r.Use(gin.Logger())
 	r.Use(traceRequest)
 
-	{
+	
 
 		// // AUTHOR ENDPOINTS
 
@@ -49,7 +49,7 @@ func New(services service.IServiceManager, log logger.ILogger) *gin.Engine {
 		r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 
-	}
+	
 
 	return r
 }
