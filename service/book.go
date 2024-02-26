@@ -37,7 +37,7 @@ func (b bookService) Create(ctx context.Context, book models.CreateBook) (models
 		return models.Book{}, err
 	}
 
-	return createdBook, err
+	return createdBook, nil
 }
 
 // GET BY ID
