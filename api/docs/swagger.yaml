@@ -1,4 +1,40 @@
 definitions:
+  models.Author:
+    properties:
+      address:
+        type: string
+      age:
+        type: integer
+      birth_date:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: integer
+      gender:
+        type: string
+      id:
+        type: string
+      login:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.AuthorsResponse:
+    properties:
+      authors:
+        items:
+          $ref: '#/definitions/models.Author'
+        type: array
+      count:
+        type: integer
+    type: object
   models.Book:
     properties:
       author_name:
@@ -25,6 +61,23 @@ definitions:
       count:
         type: integer
     type: object
+  models.CreateAuthor:
+    properties:
+      address:
+        type: string
+      birth_date:
+        type: string
+      gender:
+        type: string
+      login:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+    type: object
   models.CreateBook:
     properties:
       author_name:
@@ -41,6 +94,28 @@ definitions:
         type: string
       statusCode:
         type: integer
+    type: object
+  models.UpdateAuthor:
+    properties:
+      address:
+        type: string
+      id:
+        type: string
+      login:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    type: object
+  models.UpdateAuthorPassword:
+    properties:
+      id:
+        type: string
+      new_password:
+        type: string
+      old_password:
+        type: string
     type: object
   models.UpdateBook:
     properties:
@@ -67,6 +142,221 @@ info:
   title: BOOKS API
   version: "1.0"
 paths:
+  /author:
+    post:
+      consumes:
+      - application/json
+      description: Create a new author
+      parameters:
+      - description: author data
+        in: body
+        name: author
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateAuthor'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Author'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Create a new author
+      tags:
+      - author
+  /author/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Author
+      parameters:
+      - description: author id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Delete Author
+      tags:
+      - author
+    get:
+      consumes:
+      - application/json
+      description: Get auhtor by id
+      parameters:
+      - description: author
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Author'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Get author by id
+      tags:
+      - author
+    patch:
+      consumes:
+      - application/json
+      description: update author password
+      parameters:
+      - description: author_id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: author
+        in: body
+        name: author
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateAuthorPassword'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Update author password
+      tags:
+      - author
+    put:
+      consumes:
+      - application/json
+      description: Update author by id
+      parameters:
+      - description: author id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: author
+        in: body
+        name: author
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateAuthor'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Author'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Update author by id
+      tags:
+      - author
+  /authors:
+    get:
+      consumes:
+      - application/json
+      description: Get authors list
+      parameters:
+      - description: page
+        in: query
+        name: page
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      - description: search
+        in: query
+        name: search
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.AuthorsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Get authors list
+      tags:
+      - author
   /book:
     post:
       consumes:

@@ -27,14 +27,14 @@ func New(services service.IServiceManager, log logger.ILogger) *gin.Engine {
 
 	
 
-		// // AUTHOR ENDPOINTS
+		// AUTHOR ENDPOINTS
 
-		// r.POST("author", h.CreateAuthor)
-		// r.GET("author/:id", h.GetAuthorByID)
-		// r.GET("authors", h.GetAuthorList)
-		// r.PUT("author/:id", h.UpdateAuthor)
-		// r.DELETE("author/:id", h.DeleteAuthor)
-		// r.PATCH("author/:id", h.UpdateAuthorPassword)
+		r.POST("author", h.CreateAuthor)
+		r.GET("author/:id", h.GetAuthorByID)
+		r.GET("authors", h.GetAuthorList)
+		r.PUT("author/:id", h.UpdateAuthor)
+		r.DELETE("author/:id", h.DeleteAuthor)
+		r.PATCH("author/:id", h.UpdateAuthorPassword)
 
 		// BOOK ENDPOINTS
 

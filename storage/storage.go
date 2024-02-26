@@ -8,7 +8,7 @@ import (
 type IStorage interface {
 	Close()
 	Book() IBookStorage
-	//Author() IAuthorStorage
+	Author() IAuthorStorage
 }
 
 type IBookStorage interface {
@@ -21,12 +21,12 @@ type IBookStorage interface {
 	UpdateBookPageNumber(context.Context, models.UpdateBookPageNumber) error
 }
 
-// type IAuthorStorage interface {
-// 	Create(context.Context, models.CreateAuthor) (string, error)
-// 	Get(context.Context, models.PrimaryKey) (models.Author, error)
-// 	GetList(context.Context, models.GetListRequest) (models.AuthorsResponse, error)
-// 	Update(context.Context, models.UpdateAuthor) (string, error)
-// 	Delete(context.Context, string) error
-// 	UpdatePassword(context.Context, models.UpdateAuthorPassword) error
-// 	GetPassword(context.Context, string) (string, error)
-// }
+type IAuthorStorage interface {
+	Create(context.Context, models.CreateAuthor) (string, error)
+	Get(context.Context, models.PrimaryKey) (models.Author, error)
+	GetList(context.Context, models.GetListRequest) (models.AuthorsResponse, error)
+	Update(context.Context, models.UpdateAuthor) (string, error)
+	Delete(context.Context, string) error
+	UpdatePassword(context.Context, models.UpdateAuthorPassword) error
+	GetPassword(context.Context, string) (string, error)
+}

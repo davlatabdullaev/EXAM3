@@ -1,4 +1,4 @@
-/*CREATE TABLE IF NOT EXISTS author (
+CREATE TABLE IF NOT EXISTS author (
     id UUID PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     login VARCHAR(50) NOT NULL,
@@ -11,7 +11,7 @@
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP,
     deleted_at INTEGER DEFAULT 0
-  );*/
+  );
 CREATE TABLE IF NOT EXISTS books (
     id UUID PRIMARY KEY NOT NULL,
     name VARCHAR(50) NOT NULL,

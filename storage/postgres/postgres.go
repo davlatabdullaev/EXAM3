@@ -96,7 +96,6 @@ func (s Store) Book() storage.IBookStorage {
 	return NewBookRepo(s.pool, s.log)
 }
 
-
-// func (s Store) Author() storage.IAuthorStorage {
-// 	return NewAuthorRepo(s.pool)
-// }
+func (s Store) Author() storage.IAuthorStorage {
+	return NewAuthorRepo(s.pool)
+}
